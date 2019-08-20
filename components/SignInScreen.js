@@ -4,6 +4,7 @@ import {
     View,
     TextInput, 
     StyleSheet,
+    Linking,
     TouchableOpacity
 } from 'react-native'
 
@@ -11,16 +12,30 @@ const SignInScreen = (props) => (
     <View style={styles.container}>
         <View style={styles.formContainer}>
             <Text style={styles.label}>My Name:</Text>
-            <TextInput style={styles.textBox}></TextInput>
+            <TextInput
+                style={styles.textBox}
+                value={props.name}
+                onChangeText={props.onNameUpdate}
+            ></TextInput>
             <Text style={styles.label}>My Account Number:</Text>>
-            <TextInput style={styles.textBox} keyboardType="numeric"></TextInput>
+            <TextInput
+                style={styles.textBox}
+                keyboardType="numeric"
+                value={props.accountNumber}
+                onChangeText={props.onAccountNumberUpdate}></TextInput>
             <TouchableOpacity style={styles.actionButton}>
                 <Text style={styles.actionButtonText}>Go</Text>
             </TouchableOpacity>
         </View>
-        <Text style={styles.externalLink}>Forgot your account number?</Text>
+        <Text
+            style={styles.externalLink}
+            onPress={openHelpPage}>Forgot your account number?</Text>
     </View>
 )
+
+function openHelpPage(){
+    Linking.openURL('https://www.google.com')
+}
 
 const styles = StyleSheet.create({
     container: {
